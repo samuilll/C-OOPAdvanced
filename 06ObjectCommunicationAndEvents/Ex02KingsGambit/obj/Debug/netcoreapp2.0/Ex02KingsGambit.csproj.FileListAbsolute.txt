@@ -1,0 +1,11 @@
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\bin\Debug\netcoreapp2.0\Ex02KingsGambit.deps.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\bin\Debug\netcoreapp2.0\Ex02KingsGambit.runtimeconfig.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\bin\Debug\netcoreapp2.0\Ex02KingsGambit.runtimeconfig.dev.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\bin\Debug\netcoreapp2.0\Ex02KingsGambit.dll
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\bin\Debug\netcoreapp2.0\Ex02KingsGambit.pdb
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\obj\Debug\netcoreapp2.0\Ex02KingsGambit.csprojResolveAssemblyReference.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\obj\Debug\netcoreapp2.0\Ex02KingsGambit.csproj.CoreCompileInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\obj\Debug\netcoreapp2.0\Ex02KingsGambit.AssemblyInfoInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\obj\Debug\netcoreapp2.0\Ex02KingsGambit.AssemblyInfo.cs
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\obj\Debug\netcoreapp2.0\Ex02KingsGambit.dll
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex02KingsGambit\obj\Debug\netcoreapp2.0\Ex02KingsGambit.pdb

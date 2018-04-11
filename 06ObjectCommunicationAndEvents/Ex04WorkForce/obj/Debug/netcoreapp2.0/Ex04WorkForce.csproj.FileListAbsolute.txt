@@ -1,0 +1,11 @@
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\obj\Debug\netcoreapp2.0\Ex04WorkForce.csprojResolveAssemblyReference.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\obj\Debug\netcoreapp2.0\Ex04WorkForce.csproj.CoreCompileInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\obj\Debug\netcoreapp2.0\Ex04WorkForce.AssemblyInfoInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\obj\Debug\netcoreapp2.0\Ex04WorkForce.AssemblyInfo.cs
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\bin\Debug\netcoreapp2.0\Ex04WorkForce.deps.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\bin\Debug\netcoreapp2.0\Ex04WorkForce.runtimeconfig.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\bin\Debug\netcoreapp2.0\Ex04WorkForce.runtimeconfig.dev.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\bin\Debug\netcoreapp2.0\Ex04WorkForce.dll
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\bin\Debug\netcoreapp2.0\Ex04WorkForce.pdb
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\obj\Debug\netcoreapp2.0\Ex04WorkForce.dll
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex04WorkForce\obj\Debug\netcoreapp2.0\Ex04WorkForce.pdb

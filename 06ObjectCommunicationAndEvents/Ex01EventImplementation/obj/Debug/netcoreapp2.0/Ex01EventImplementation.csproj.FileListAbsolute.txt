@@ -1,0 +1,11 @@
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\bin\Debug\netcoreapp2.0\Ex01EventImplementation.deps.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\bin\Debug\netcoreapp2.0\Ex01EventImplementation.runtimeconfig.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\bin\Debug\netcoreapp2.0\Ex01EventImplementation.runtimeconfig.dev.json
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\bin\Debug\netcoreapp2.0\Ex01EventImplementation.dll
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\bin\Debug\netcoreapp2.0\Ex01EventImplementation.pdb
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\obj\Debug\netcoreapp2.0\Ex01EventImplementation.csprojResolveAssemblyReference.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\obj\Debug\netcoreapp2.0\Ex01EventImplementation.csproj.CoreCompileInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\obj\Debug\netcoreapp2.0\Ex01EventImplementation.AssemblyInfoInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\obj\Debug\netcoreapp2.0\Ex01EventImplementation.AssemblyInfo.cs
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\obj\Debug\netcoreapp2.0\Ex01EventImplementation.dll
+D:\C-Fundamentals\C-OOPAdvanced\06ObjectCommunicationAndEvents\Ex01EventImplementation\obj\Debug\netcoreapp2.0\Ex01EventImplementation.pdb
