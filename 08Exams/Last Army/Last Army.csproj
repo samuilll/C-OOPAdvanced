@@ -45,7 +45,6 @@
     <Compile Include="Core\GameController.cs" />
     <Compile Include="Core\OutputMessages.cs" />
     <Compile Include="Core\MissionController.cs" />
-    <Compile Include="Core\Output.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Entities\Ammunitions\Ammunition.cs" />
     <Compile Include="Entities\Missions\Easy.cs" />

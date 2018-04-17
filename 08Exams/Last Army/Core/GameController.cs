@@ -95,7 +95,23 @@ public class GameController
     public string RequestResult()
     {
         this.missionControllerField.FailMissionsOnHold();
-        return new Output().GiveOutput(army, wearHouse, this.MissionControllerField);
+
+        var result = new StringBuilder();
+
+        result.AppendLine("Results:");
+        result.AppendLine($"Successful missions - {missionControllerField.SuccessMissionCounter}");
+        result.AppendLine($"Failed missions - {missionControllerField.FailedMissionCounter}");
+        result.AppendLine("Soldiers:");
+
+        List<ISoldier> soldiers = new List<ISoldier>();
+
+        soldiers = army.Soldiers.OrderByDescending(s => s.OverallSkill).ToList();
+
+        foreach (var soldier in soldiers)
+        {
+            result.AppendLine(soldier.ToString());
+        }
+        return result.ToString().TrimEnd('\n');
     }
     private void AddAmmunitions(IAmmunition ammunition, int number)
     {    
