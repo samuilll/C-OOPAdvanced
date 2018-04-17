@@ -1,5 +1,6 @@
 ﻿namespace Forum.Data
 {
+    using System;
     using System.Collections.Generic;
     using Forum.DataModels;
 
@@ -28,5 +29,10 @@
 			DataMapper.SaveReplies(this.Replies);
 			DataMapper.SaveCategories(this.Categories);
 		}
-	}
+
+        public object First()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

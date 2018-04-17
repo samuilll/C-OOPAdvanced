@@ -1,25 +1,39 @@
 ﻿namespace Forum.App.Menus
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	using Models;
-	using Contracts;
+    using Models;
+    using Contracts;
+    using System;
 
-	public class AddReplyMenu : Menu, ITextAreaMenu, IIdHoldingMenu
+    public class AddReplyMenu : Menu, ITextAreaMenu, IIdHoldingMenu
     {
 		private const int authorOffset = 8;
 		private const int leftOffset = 18;
 		private const int topOffset = 7;
 		private const int buttonOffset = 14;
 
+        private string errorMessage = "";
+
 		private ILabelFactory labelFactory;
 		private ITextAreaFactory textAreaFactory;
-		private IForumReader reader;
+		private IForumReader forumReader;
+        private ICommandFactory commandFactory;
+        private IPostService postService;
+        private int postId;
+        public AddReplyMenu(ILabelFactory labelFactory, ITextAreaFactory textAreaFactory, IForumReader reader, ICommandFactory commandFactory,IPostService postService)
+        {
+            this.labelFactory = labelFactory;
+            this.textAreaFactory = textAreaFactory;
+            this.forumReader = reader;
+            this.commandFactory = commandFactory;
+            this.postService = postService;
+            
+        }
 
-		private bool error;
+        private bool error;
 		private IPostViewModel post;
 
-		//TODO: Inject Dependencies
 
 		public ITextInputArea TextArea { get; private set; }
 
@@ -72,17 +86,53 @@
 
 			int top = consoleCenter.Top - (topOffset + this.post.Content.Length) + 5;
 
-			this.TextArea = this.textAreaFactory.CreateTextArea(this.reader, consoleCenter.Left - 18, top, false);
+			this.TextArea = this.textAreaFactory.CreateTextArea(this.forumReader, consoleCenter.Left - 18, top, false);
 		}
 
 		public void SetId(int id)
 		{
-			throw new System.NotImplementedException();
+            this.postId = id;
+
+            this.LoadPost();
 		}
 
-		public override IMenu ExecuteCommand()
+        private void LoadPost()
+        {
+         this.post =   this.postService.GetPostViewModel(this.postId);
+            this.InitializeTextArea();
+            this.Open();
+        }
+
+        public override IMenu ExecuteCommand()
 		{
-			throw new System.NotImplementedException();
-		}
+
+            if (this.CurrentOption.IsField)
+            {
+                string fieldInput = " " + this.forumReader.ReadLine(this.CurrentOption.Position.Left + 1,
+                    this.CurrentOption.Position.Top);
+
+                this.Buttons[this.currentIndex] = this.labelFactory.CreateButton(
+                    fieldInput, this.CurrentOption.Position,
+                    this.CurrentOption.IsHidden, this.CurrentOption.IsField
+                    );
+
+                return this;
+            }
+
+            try
+            {
+                string commandName = string.Join("", this.CurrentOption.Text.Split());
+                ICommand command = this.commandFactory.CreateCommand(commandName);
+                IMenu view = command.Execute(this.TextArea.Text,this.postId.ToString());
+
+                return view;
+            }
+            catch (Exception e)
+            {
+                this.error = true;
+                this.InitializeStaticLabels(Position.ConsoleCenter());
+                return this;
+            }
+        }
 	}
 }

@@ -28,7 +28,6 @@
         private ICategoryInfoViewModel[] categories;
         private int currentPage;
 
-        //TODO: Inject Dependencies
 
         private int LastPage => this.categories.Length / 11;
 
@@ -103,11 +102,13 @@
         public override IMenu ExecuteCommand()
         {
             ICommand command = null;
+            string categoryId = null;
 
-            int actualIndex = this.currentPage * pageSize + this.currentIndex;
+            int actualIndex = this.currentPage * pageSize + this.currentIndex-1;
 
-            if (this.currentIndex > 0 && this.currentIndex <= 10)
+            if (this.currentIndex > 0 && this.currentIndex < 10)
             {
+                categoryId = this.categories[actualIndex].Id.ToString();
                 command = this.commandFactory.CreateCommand("ViewCategoryMenu");
             }
             else
@@ -116,9 +117,8 @@
                 command = this.commandFactory.CreateCommand(commandName);
             }
 
-            int categoryId = this.categories.Length!=0?this.categories[actualIndex].Id:0;
 
-            return command.Execute(categoryId.ToString());
+            return command.Execute(categoryId);
         }
 
         public override void Open()

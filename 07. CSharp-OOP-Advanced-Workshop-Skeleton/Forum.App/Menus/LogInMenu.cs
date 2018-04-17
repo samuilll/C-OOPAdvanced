@@ -2,10 +2,11 @@
 {
 	using Models;
     using Contracts;
+    using System;
 
     public class LogInMenu : Menu
     {
-		private const string errorMessage = "Invalid username or password!";
+		private  string errorMessage = " ";
 
 		private bool error;
 
@@ -13,13 +14,16 @@
         private ICommandFactory commandFactory;
         private ISession session;
         private IUserService userService;
+        private IForumReader forumReader;
 
-        public LogInMenu(ILabelFactory labelFactory, ICommandFactory commandFactory, ISession session, IUserService userService )
+        public LogInMenu(ILabelFactory labelFactory, ICommandFactory commandFactory, ISession session, IUserService userService,IForumReader forumReader )
         {
             this.labelFactory = labelFactory;
             this.commandFactory = commandFactory;
             this.session = session;
             this.userService = userService;
+            this.forumReader = forumReader;
+
 
             this.Open();
         }
@@ -76,7 +80,34 @@
 
 		public override IMenu ExecuteCommand()
 		{
-			throw new System.NotImplementedException();
-		}
-	}
+            if (this.CurrentOption.IsField)
+            {
+                string fieldInput = " " + this.forumReader.ReadLine(this.CurrentOption.Position.Left + 1,
+                    this.CurrentOption.Position.Top);
+
+                this.Buttons[this.currentIndex] = this.labelFactory.CreateButton(
+                    fieldInput, this.CurrentOption.Position,
+                    this.CurrentOption.IsHidden, this.CurrentOption.IsField
+                    );
+
+                return this;
+            }
+
+            try
+            {
+                string commandName = string.Join("", this.CurrentOption.Text.Split());
+                ICommand command = this.commandFactory.CreateCommand(commandName);
+                IMenu view = command.Execute(this.UsernameInput, this.PasswordInput);
+
+                return view;
+            }
+            catch (Exception e)
+            {
+                this.error = true;
+                this.errorMessage = e.Message;
+                this.Open();
+                return this;
+            }
+        }
+    }
 }

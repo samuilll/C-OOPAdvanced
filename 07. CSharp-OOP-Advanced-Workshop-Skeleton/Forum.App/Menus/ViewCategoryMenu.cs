@@ -13,18 +13,26 @@
 
 		private ILabelFactory labelFactory;
 		private IPostService postService;
+        private ICommandFactory commandFactory;
 
-		private int categoryId;
+        public ViewCategoryMenu(ILabelFactory labelFactory, IPostService postService, ICommandFactory commandFactory)
+        {
+            this.labelFactory = labelFactory;
+            this.postService = postService;
+            this.commandFactory = commandFactory;
+
+        }
+
+        private int categoryId;
 		private int currentPage;
 		private IPostInfoViewModel[] posts;
 
-		//TODO: Inject Dependencies
 
-		private int LastPage => throw new System.NotImplementedException();
+		private int LastPage => this.posts.Length/11;
 
-		private bool IsFirstPage => throw new System.NotImplementedException();
+		private bool IsFirstPage => this.currentPage==0;
 
-		private bool IsLastPage => throw new System.NotImplementedException();
+		private bool IsLastPage => this.currentPage==this.LastPage;
 
 		protected override void InitializeStaticLabels(Position consoleCenter)
 		{
@@ -94,17 +102,48 @@
 
 		public override IMenu ExecuteCommand()
 		{
-			throw new System.NotImplementedException();
+            ICommand command = null;
+            int actualIndex = this.currentPage * 10 + this.currentIndex-1;
+            string postId = null;
+
+            if (this.currentIndex>0&&this.currentIndex<10)
+            {
+                postId = this.posts[actualIndex].Id.ToString();
+                command = this.commandFactory.CreateCommand("ViewPostMenu");
+            }
+            else
+            {
+                string commandName = string.Join("", this.CurrentOption.Text.Split());
+                command = this.commandFactory.CreateCommand(commandName);
+            }
+
+          return      command.Execute(postId);
 		}
 
 		public void ChangePage(bool forward = true)
 		{
-			throw new System.NotImplementedException();
-		}
+            this.currentPage += forward ? 1 : -1;
+            this.currentIndex = 0;
+
+            this.Open();
+        }
 
 		public void SetId(int id)
 		{
-			throw new System.NotImplementedException();
-		}
-	}
+            this.categoryId = id;
+
+            this.Open();
+        }
+
+        public override void Open()
+        {
+            this.LoadPosts();
+
+            base.Open();
+        }
+        private void LoadPosts()
+        {
+            this.posts = this.postService.GetCategoryPostsInfo(this.categoryId).ToArray();
+        }
+    }
 }

@@ -1,130 +1,153 @@
 ﻿namespace Forum.App.Menus
 {
-	using System.Linq;
-	using System.Collections.Generic;
+    using System.Linq;
+    using System.Collections.Generic;
 
-	using Models;
-	using Contracts;
+    using Models;
+    using Contracts;
 
-	public class ViewPostMenu : Menu, IIdHoldingMenu
-	{
-		private const int leftOffset = 18;
-		private const int topOffset = 7;
+    public class ViewPostMenu : Menu, IIdHoldingMenu
+    {
 
-		private ILabelFactory labelFactory;
-		private ISession session;
+        private const int leftOffset = 18;
+        private const int topOffset = 7;
 
-		private IForumViewEngine viewEngine;
-		
-		private int postId;
-		private IPostViewModel post;
+        private ILabelFactory labelFactory;
+        private ISession session;
+        private ICommandFactory commandFactory;
+        private IPostService postService;
 
-		//TODO: Inject Dependencies
+        private IForumViewEngine viewEngine;
 
-		public override void Open()
-		{		
-			this.LoadPost();
-			this.ExtendBuffer();
+        private int postId;
+        private IPostViewModel post;
 
-			Position consoleCenter = Position.ConsoleCenter();
+        public ViewPostMenu(ILabelFactory labelFactory, ISession session, ICommandFactory commandFactory,
+            IPostService postService, IForumViewEngine viewEngine)
+        {
+            this.labelFactory = labelFactory;
+            this.session = session;
+            this.commandFactory = commandFactory;
+            this.postService = postService;
+            this.viewEngine = viewEngine;
+        }
 
-			InitializeStaticLabels(consoleCenter);
 
-			InitializeButtons(consoleCenter);
+        public override void Open()
+        {
+            this.LoadPost();
+            this.ExtendBuffer();
 
-			// Add replies
-			int currentRow = consoleCenter.Top - (consoleCenter.Top - topOffset - 3 - this.post.Content.Length) + 1;
+            Position consoleCenter = Position.ConsoleCenter();
 
-			Position repliesStartPosition = new Position(consoleCenter.Left - leftOffset, currentRow++);
-			int repliesCount = this.post.Replies.Length;
+            InitializeStaticLabels(consoleCenter);
 
-			ICollection<ILabel> replyLabels = new List<ILabel>();
+            InitializeButtons(consoleCenter);
 
-			replyLabels.Add(this.labelFactory.CreateLabel($"Replies: {repliesCount}", repliesStartPosition));
+            // Add replies
+            int currentRow = consoleCenter.Top - (consoleCenter.Top - topOffset - 3 - this.post.Content.Length) + 1;
 
-			foreach (var reply in this.post.Replies)
-			{
-				Position replyAuthorPosition = new Position(repliesStartPosition.Left, ++currentRow);
+            Position repliesStartPosition = new Position(consoleCenter.Left - leftOffset, currentRow++);
+            int repliesCount = this.post.Replies.Length;
 
-				replyLabels.Add(this.labelFactory.CreateLabel(reply.Author, replyAuthorPosition));
+            ICollection<ILabel> replyLabels = new List<ILabel>();
 
-				foreach (var line in reply.Content)
-				{
-					Position rowPosition = new Position(repliesStartPosition.Left, ++currentRow);
-					replyLabels.Add(this.labelFactory.CreateLabel(line, rowPosition));
-				}
-				currentRow++;
-			}
+            replyLabels.Add(this.labelFactory.CreateLabel($"Replies: {repliesCount}", repliesStartPosition));
 
-			this.Labels = this.Labels.Concat(replyLabels).ToArray();
-		}
+            foreach (var reply in this.post.Replies)
+            {
+                Position replyAuthorPosition = new Position(repliesStartPosition.Left, ++currentRow);
 
-		protected override void InitializeStaticLabels(Position consoleCenter)
-		{
-			Position titlePosition =
-				new Position(consoleCenter.Left - this.post.Title.Length / 2, consoleCenter.Top - 10);
-			Position authorPosition =
-				new Position(consoleCenter.Left - this.post.Author.Length, consoleCenter.Top - 9);
+                replyLabels.Add(this.labelFactory.CreateLabel(reply.Author, replyAuthorPosition));
 
-			var labels = new List<ILabel>()
-			{
-				this.labelFactory.CreateLabel(this.post.Title, titlePosition),
-				this.labelFactory.CreateLabel($"Author: {this.post.Author}", authorPosition),
-			};
+                foreach (var line in reply.Content)
+                {
+                    Position rowPosition = new Position(repliesStartPosition.Left, ++currentRow);
+                    replyLabels.Add(this.labelFactory.CreateLabel(line, rowPosition));
+                }
+                currentRow++;
+            }
 
-			int leftPosition = consoleCenter.Left - leftOffset;
+            this.Labels = this.Labels.Concat(replyLabels).ToArray();
+        }
 
-			int lineCount = this.post.Content.Length;
+        protected override void InitializeStaticLabels(Position consoleCenter)
+        {
+            Position titlePosition =
+                new Position(consoleCenter.Left - this.post.Title.Length / 2, consoleCenter.Top - 10);
+            Position authorPosition =
+                new Position(consoleCenter.Left - this.post.Author.Length, consoleCenter.Top - 9);
 
-			// Add post contents
-			for (int i = 0; i < lineCount; i++)
-			{
-				Position position = new Position(leftPosition, consoleCenter.Top - (topOffset - i));
-				ILabel label = this.labelFactory.CreateLabel(this.post.Content[i], position);
-				labels.Add(label);
-			}
+            var labels = new List<ILabel>()
+            {
+                this.labelFactory.CreateLabel(this.post.Title, titlePosition),
+                this.labelFactory.CreateLabel($"Author: {this.post.Author}", authorPosition),
+            };
 
-			this.Labels = labels.ToArray();
-		}
+            int leftPosition = consoleCenter.Left - leftOffset;
 
-		protected override void InitializeButtons(Position consoleCenter)
-		{
-			this.Buttons = new IButton[2];
+            int lineCount = this.post.Content.Length;
 
-			this.Buttons[0] = this.labelFactory.CreateButton("Back",
-				new Position(consoleCenter.Left + 15, consoleCenter.Top - 3));
-			this.Buttons[1] = this.labelFactory.CreateButton("Add Reply",
-				new Position(consoleCenter.Left + 10, consoleCenter.Top - 4), !this.session.IsLoggedIn);
-		}
+            // Add post contents
+            for (int i = 0; i < lineCount; i++)
+            {
+                Position position = new Position(leftPosition, consoleCenter.Top - (topOffset - i));
+                ILabel label = this.labelFactory.CreateLabel(this.post.Content[i], position);
+                labels.Add(label);
+            }
 
-		public void SetId(int id)
-		{
-			throw new System.NotImplementedException();
-		}
+            this.Labels = labels.ToArray();
+        }
 
-		private void LoadPost()
-		{
-			throw new System.NotImplementedException();
-		}
+        protected override void InitializeButtons(Position consoleCenter)
+        {
+            this.Buttons = new IButton[2];
 
-		public override IMenu ExecuteCommand()
-		{
-			throw new System.NotImplementedException();
-		}
+            this.Buttons[0] = this.labelFactory.CreateButton("Back",
+                new Position(consoleCenter.Left + 15, consoleCenter.Top - 3));
+            this.Buttons[1] = this.labelFactory.CreateButton("Add Reply",
+                new Position(consoleCenter.Left + 10, consoleCenter.Top - 4), !this.session.IsLoggedIn);
+        }
 
-		private void ExtendBuffer()
-		{
-			int totalLines = 13 + this.post.Content.Length;
+        public void SetId(int id)
+        {
+            this.postId = id;
 
-			foreach (var reply in this.post.Replies)
-			{
-				totalLines += 2 + reply.Content.Length;
-			}
+            this.Open();
+        }
 
-			if (totalLines > 30)
-			{
-				viewEngine.SetBufferHeight(totalLines);
-			}
-		}
-	}
+        private void LoadPost()
+        {
+            this.post = this.postService.GetPostViewModel(this.postId);
+        }
+
+        public override IMenu ExecuteCommand()
+        {
+
+            string commandName = string.Join("", this.CurrentOption.Text.Split());
+
+            ICommand command = this.commandFactory.CreateCommand(commandName);
+
+            IMenu menu = command.Execute(this.postId.ToString());
+
+            this.viewEngine.ResetBuffer();
+
+            return menu;
+        }
+
+        private void ExtendBuffer()
+        {
+            int totalLines = 13 + this.post.Content.Length;
+
+            foreach (var reply in this.post.Replies)
+            {
+                totalLines += 2 + reply.Content.Length;
+            }
+
+            if (totalLines > 30)
+            {
+                viewEngine.SetBufferHeight(totalLines);
+            }
+        }
+    }
 }

@@ -2,6 +2,7 @@
 {
 	using Models;
 	using Contracts;
+    using System;
 
     public class SignUpMenu : Menu
     {
@@ -9,18 +10,15 @@
 		private const string USERNAME_TAKEN_ERROR = "Username already in use!";
 
 		private bool error;
-
+        private IForumReader forumReader;
         private ILabelFactory labelFactory;
         private ICommandFactory commandFactory;
-        private ISession session;
-        private IUserService userService;
 
-        public SignUpMenu(ILabelFactory labelFactory, ICommandFactory commandFactory, ISession session, IUserService userService)
+        public SignUpMenu(ILabelFactory labelFactory, ICommandFactory commandFactory, IForumReader reader)
         {
             this.labelFactory = labelFactory;
             this.commandFactory = commandFactory;
-            this.session = session;
-            this.userService = userService;
+            this.forumReader = reader;
 
             this.Open();
         }
@@ -79,7 +77,35 @@
 
 		public override IMenu ExecuteCommand()
 		{
-			throw new System.NotImplementedException();
-		}
+            if (this.CurrentOption.IsField)
+            {
+                string fieldInput = " " + this.forumReader.ReadLine(this.CurrentOption.Position.Left + 1,
+                    this.CurrentOption.Position.Top);
+
+                this.Buttons[this.currentIndex] = this.labelFactory.CreateButton(
+                    fieldInput, this.CurrentOption.Position,
+                    this.CurrentOption.IsHidden, this.CurrentOption.IsField
+                    );
+
+                return this;
+            }
+
+            try
+            {
+                string commandName = string.Join("",this.CurrentOption.Text.Split());
+                ICommand command = this.commandFactory.CreateCommand(commandName);
+                IMenu view = command.Execute(this.UsernameInput,this.PasswordInput);
+
+                return view;
+            }
+            catch (Exception e)
+            {
+                this.error = true;
+                this.ErrorMessage = e.Message;
+                this.Open();
+                return this;
+            }
+
+        }
 	}
 }
