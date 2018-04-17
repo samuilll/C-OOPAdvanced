@@ -20,7 +20,6 @@ public class Ranker : Soldier
             "AutomaticMachine",
             "Helmet"
         };
-
     public override IReadOnlyList<string> WeaponsAllowed => this.weaponsAllowed;
 }
 
