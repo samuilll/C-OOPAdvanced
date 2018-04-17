@@ -100,14 +100,5 @@ public abstract class Soldier : ISoldier
         this.Endurance -= mission.EnduranceRequired;
     }
 
-    public bool GetWeapon(IAmmunition weapon)
-    {
-        if (this.Weapons[weapon.Name]==null || this.Weapons[weapon.Name].WearLevel<=0)
-        {
-            this.Weapons[weapon.Name] = weapon;
-            return true;
-        }
-
-        return false;
-    }
+    
 }

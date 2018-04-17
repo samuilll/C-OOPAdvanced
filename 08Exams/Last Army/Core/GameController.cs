@@ -104,37 +104,46 @@ public class GameController
 
     private void AddSoldierToArmy(ISoldier soldier, string type)
     {
-        foreach (var weaponString in soldier.WeaponsAllowed)
+        var weaponsAsString = soldier.Weapons.Keys.ToList();
+
+        foreach (var weaponAsString in weaponsAsString)
         {
-            if (!this.wearHouse.Weapons.ContainsKey(weaponString))
+            if (!this.wearHouse.Weapons.ContainsKey(weaponAsString))
             {
                 throw new ArgumentException($"There is no weapon for {soldier.GetType().Name} {soldier.Name}!");
             }
-            if (this.wearHouse.Weapons[weaponString].Count==0)
+            if (this.wearHouse.Weapons[weaponAsString].Count == 0)
             {
                 throw new ArgumentException($"There is no weapon for {soldier.GetType().Name} {soldier.Name}!");
             }
-        }
-
-        FindWeaponsInRepo(soldier);
-
-        this.army.AddSoldier(soldier);
-
-    }
-
-    private void FindWeaponsInRepo(ISoldier soldier)
-    {
-        foreach (var weapon in soldier.WeaponsAllowed)
-        {
-            if (this.wearHouse.Weapons[weapon].Count > 0)
+            if (this.wearHouse.Weapons[weaponAsString].Count > 0)
             {
-                IAmmunition weaponToAdd = this.wearHouse.Weapons[weapon].First();
+                IAmmunition weaponToAdd = this.wearHouse.Weapons[weaponAsString].First();
 
-                if (soldier.GetWeapon(weaponToAdd))
+                if (soldier.Weapons[weaponAsString] == null)
                 {
+                    soldier.Weapons[weaponAsString] = weaponToAdd;
                     this.wearHouse.RemoveWeapon(weaponToAdd);
-                }
+                }           
             }
         }
+        
+        this.army.AddSoldier(soldier);
     }
+
+    //private void FindWeaponsInRepo(ISoldier soldier)
+    //{
+    //    foreach (var weapon in soldier.WeaponsAllowed)
+    //    {
+    //        if (this.wearHouse.Weapons[weapon].Count > 0)
+    //        {
+    //            IAmmunition weaponToAdd = this.wearHouse.Weapons[weapon].First();
+
+    //            if (soldier.GetWeapon(weaponToAdd))
+    //            {
+    //                this.wearHouse.RemoveWeapon(weaponToAdd);
+    //            }
+    //        }
+    //    }
+    //}
 }

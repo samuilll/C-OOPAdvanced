@@ -14,13 +14,9 @@ public interface ISoldier
 
     IDictionary<string, IAmmunition> Weapons { get; }
 
-     IReadOnlyList<string> WeaponsAllowed { get; }
-
     void Regenerate();
 
     bool ReadyForMission(IMission mission);
 
     void CompleteMission(IMission mission);
-
-    bool GetWeapon(IAmmunition weapon);
 }

@@ -11,3 +11,10 @@ C:\Users\Sami\Desktop\ToDelete\ExamAdvExaml\Last Army\obj\Debug\Last Army.csproj
 C:\Users\Sami\Desktop\ToDelete\ExamAdvExaml\Last Army\obj\Debug\Last Army.csproj.CoreCompileInputs.cache
 C:\Users\Sami\Desktop\ToDelete\ExamAdvExaml\Last Army\obj\Debug\Last Army.exe
 C:\Users\Sami\Desktop\ToDelete\ExamAdvExaml\Last Army\obj\Debug\Last Army.pdb
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\bin\Debug\Last Army.exe.config
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\bin\Debug\Last Army.exe
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\bin\Debug\Last Army.pdb
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\obj\Debug\Last Army.csprojResolveAssemblyReference.cache
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\obj\Debug\Last Army.csproj.CoreCompileInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\obj\Debug\Last Army.exe
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Last Army\obj\Debug\Last Army.pdb

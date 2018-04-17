@@ -7,6 +7,4 @@
     double ScoreToComplete { get; }
 
     double WearLevelDecrement { get; }
-
-
 }

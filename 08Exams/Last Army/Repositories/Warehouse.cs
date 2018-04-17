@@ -36,15 +36,26 @@ using System.Threading.Tasks;
         {
             var soldier = army.Soldiers[i];
 
-            foreach (var weapon in soldier.WeaponsAllowed)
-            {
-                if (this.Weapons[weapon].Count > 0)
-                {
-                    IAmmunition weaponToAdd = this.Weapons[weapon].First();
+            var weaponsAsString = soldier.Weapons.Keys.ToList();
 
-                    if (soldier.GetWeapon(weaponToAdd))
+            foreach (var weaponAsString in  weaponsAsString )
+            {                    
+                if (this.Weapons[weaponAsString].Count > 0)
+                {
+                    IAmmunition weaponToAdd = this.Weapons[weaponAsString].First();
+
+                    if (soldier.Weapons[weaponAsString]==null)
                     {
+                        soldier.Weapons[weaponAsString]=weaponToAdd;
                         this.RemoveWeapon(weaponToAdd);
+                        continue;
+                    }
+
+                   else if (soldier.Weapons[weaponAsString].WearLevel <= 0)
+                    {
+                        soldier.Weapons[weaponAsString] = weaponToAdd;
+                        this.RemoveWeapon(weaponToAdd);
+                        continue;
                     }
                 }
             }
