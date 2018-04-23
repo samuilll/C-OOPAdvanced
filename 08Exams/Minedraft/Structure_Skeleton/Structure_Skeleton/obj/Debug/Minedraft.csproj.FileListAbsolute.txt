@@ -1,0 +1,13 @@
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\obj\Debug\Minedraft.csprojResolveAssemblyReference.cache
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\obj\Debug\Minedraft.csproj.CoreCompileInputs.cache
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Minedraft.exe.config
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Minedraft.exe
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Minedraft.pdb
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\obj\Debug\Minedraft.exe
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\obj\Debug\Minedraft.pdb
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\C-Fundamentals\C-OOPAdvanced\08Exams\Minedraft\Structure_Skeleton\Structure_Skeleton\obj\Debug\Minedraft.csproj.CopyComplete
